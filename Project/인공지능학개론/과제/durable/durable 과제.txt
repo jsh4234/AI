@@ -1,0 +1,66 @@
+from durable.lang import *
+with ruleset('Factory1'):
+  @when_all((m.object == '제조 일정연기'))
+  def Part1(c):
+    c.assert_fact({'State':c.m.State, 'Result':'가공 상태 및 외주 사용'})
+  @when_all((m.object == '설계 일정연기'))
+  def Part2(c):
+    c.assert_fact({'State':c.m.State, 'Result':'가공 및 외주 일정 확인'})
+  @when_all((m.object == '비전 일정연기'))
+  def Part3(c):
+    c.assert_fact({'State':c.m.State, 'Result':'고객사 스팩 협의'})
+  @when_all((m.object == '영업 일정연기'))
+  def Part4(c):
+    c.assert_fact({'State':c.m.State, 'Result':'출하 일정 조절'})
+  @when_all((m.object == '제어 일정연기'))
+  def Part5(c):
+    c.assert_fact({'State':c.m.State, 'Result':'설계 불합리 확인'})
+  @when_all((m.object == '검사 정확도'))
+  def Part6(c):
+    c.assert_fact({'State':c.m.State, 'Result':'모터 및 비전 셋팅상태 확인'})
+  @when_all((m.object == 'MES'))
+  def Part7(c):
+    c.assert_fact({'State':c.m.State, 'Result':'서버 규칙 확인'})
+  @when_all((m.object == '기구 충돌'))
+  def Part8(c):
+    c.assert_fact({'State':c.m.State, 'Result':'티칭 위치 확인'})
+  @when_all((m.object == '통신연결'))
+  def Part9(c):
+    c.assert_fact({'State':c.m.State, 'Result':'케이블 및 IP등 주소 확인'})
+  @when_all((m.object == '안전사고'))
+  def Part10(c):
+    c.assert_fact({'State':c.m.State, 'Result':'작업자 재교육'})
+  @when_all((m.object == '무언정지'))
+  def Part11(c):
+    c.assert_fact({'State':c.m.State, 'Result':'제어 시퀀스 및 센서 확인'})
+  @when_all((m.object == '오동작'))
+  def Part12(c):
+    c.assert_fact({'State':c.m.State, 'Result':'기구부 센서 확인'})
+  @when_all((m.object == '원점 이상 발생'))
+  def Part13(c):
+    c.assert_fact({'State':c.m.State, 'Result':'리미트 센서 및 상태 확인'})
+  @when_all((m.object == '제품파손'))
+  def Part14(c):
+    c.assert_fact({'State':c.m.State, 'Result':'제품 셋팅 확인'})
+  @when_all((m.object == '제품 검사 결과 이상'))
+  def Part15(c):
+    c.assert_fact({'State':c.m.State, 'Result':'비전 및 기구부 셋팅 확인'})
+  @when_all(+m.State)
+  def output(c):
+    print('대책: {0} {1} {2}',format(c.m.State, c.m.object, c.m.Result))
+
+assert_fact('Factory1',{'State':'이슈 사항','object':'제조 일정연기'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'설계 일정연기'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'비전 일정연기'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'영업 일정연기'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'제어 일정연기'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'검사 정확도'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'MES'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'기구충돌'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'통신연결'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'안전사고'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'무언정지'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'오동작'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'원점 이상 발생'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'제품파손'})
+assert_fact('Factory1',{'State':'이슈 사항','object':'제품검사 결과 이상'})
